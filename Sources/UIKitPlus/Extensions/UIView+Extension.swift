@@ -2,6 +2,21 @@ import UIKit
 
 public extension UIView {
 
+    class func animate(
+        withDuration duration: TimeInterval,
+        options: UIView.AnimationOptions = [],
+        animations: @escaping () -> Void,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: options,
+            animations: animations,
+            completion: completion
+        )
+    }
+
     var isVisible: Bool {
         get {
             !isHidden
