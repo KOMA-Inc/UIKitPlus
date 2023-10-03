@@ -28,7 +28,7 @@ public extension UIView {
 
     func setHidden(
         _ hidden: Bool,
-        withDuration duration: Double = 0.5,
+        withDuration duration: Double = 0.3,
         delay: TimeInterval = 0,
         completion: ((Bool) -> Void)? = nil
     ) {
