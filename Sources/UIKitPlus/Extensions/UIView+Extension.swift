@@ -124,4 +124,12 @@ public extension UIView {
 
         return image ?? .init()
     }
+
+    var absoluteCenter: CGPoint {
+        if let superview = superview {
+            superview.convert(center, to: nil)
+        } else {
+            center
+        }
+    }
 }
