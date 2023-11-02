@@ -4,7 +4,6 @@ public extension UIApplication {
     static var keyWindow: UIWindow? {
         UIApplication.shared.connectedScenes
             .first {
-                $0.activationState == .foregroundActive &&
                 $0 is UIWindowScene
             }
             .flatMap { $0 as? UIWindowScene }?
