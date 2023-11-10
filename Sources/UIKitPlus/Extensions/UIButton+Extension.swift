@@ -18,4 +18,13 @@ public extension UIButton {
     func setImage(_ image: UIImage?) {
         setImage(image, for: .normal)
     }
+
+    var imageEdgeInsetsIgnoreDeprecated: UIEdgeInsets {
+        get {
+            value(forKey: "imageEdgeInsets") as! UIEdgeInsets
+        }
+        set {
+            setValue(newValue, forKey: "imageEdgeInsets")
+        }
+    }
 }
