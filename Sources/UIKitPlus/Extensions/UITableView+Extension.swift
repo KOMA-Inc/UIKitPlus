@@ -5,6 +5,13 @@ public extension UITableView {
         register(type.nib, forCellReuseIdentifier: type.reuseIdentifier)
     }
 
+    /// Usage:
+    /// ```
+    /// tableView.register(
+    ///     FirstCell.self,
+    ///     SecondCell.self
+    /// )
+    /// ```
     func register(_ types: UITableViewCell.Type...) {
         types.forEach { type in
             register(type.nib, forCellReuseIdentifier: type.reuseIdentifier)
