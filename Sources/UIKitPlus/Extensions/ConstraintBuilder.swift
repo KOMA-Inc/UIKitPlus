@@ -9,8 +9,8 @@ public struct ConstraintBuilder {
     }
 }
 
-public extension UIView {
-    func activate(
+public extension NSLayoutConstraint {
+    static func activate(
         @ConstraintBuilder constraints: () -> [NSLayoutConstraint]
     ) {
         NSLayoutConstraint.activate(constraints())
