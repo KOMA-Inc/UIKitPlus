@@ -17,6 +17,21 @@ public extension UIView {
         )
     }
 
+    class func crossDissolve(
+        with view: UIView,
+        duration: TimeInterval = 0.3,
+        animations: (() -> Void)?,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        UIView.transition(
+            with: view,
+            duration: duration,
+            options: [.transitionCrossDissolve, .allowUserInteraction, .beginFromCurrentState],
+            animations: animations,
+            completion: completion
+        )
+    }
+
     var isVisible: Bool {
         get {
             !isHidden
