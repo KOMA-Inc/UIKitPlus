@@ -11,6 +11,10 @@ public extension UIButton {
         }
     }
 
+    func setTitleColor(_ color: UIColor?) {
+        setTitleColor(color, for: .normal)
+    }
+
     func setTitle(_ title: String?) {
         setTitle(title, for: .normal)
     }
