@@ -56,14 +56,21 @@ public extension UIView {
             isHidden = false
         }
 
-        // swiftlint:disable:next multiline_arguments
-        UIView.animate(withDuration: duration, delay: delay) {
-            self.alpha = hidden ? 0 : 1
-        } completion: { completed in
+        if duration == .zero {
+            alpha = hidden ? 0 : 1
             if hidden {
-                self.isHidden = true
+                isHidden = true
             }
-            completion?(completed)
+            completion?(true)
+        } else {
+            UIView.animate(withDuration: duration, delay: delay) {
+                self.alpha = hidden ? 0 : 1
+            } completion: { completed in
+                if hidden {
+                    self.isHidden = true
+                }
+                completion?(completed)
+            }
         }
     }
 
