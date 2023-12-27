@@ -155,16 +155,16 @@ public extension UIView {
         }
     }
 
-    /// If ViewState is present, performs the `apply` method and sets `superview.isHidden` as true. Otherwise, sets `superview.isHidden` as false
+    /// If ViewState is present, performs the `apply` method and sets `isHidden` as true. Otherwise, sets `isHidden` as false
     func applyIfPresent<ViewState>(
         _ viewState: ViewState?,
         apply: (ViewState) -> Void
     ) {
         if let viewState {
             apply(viewState)
-            superview?.isHidden = false
+            isHidden = false
         } else {
-            superview?.isHidden = true
+            isHidden = true
         }
     }
 }
