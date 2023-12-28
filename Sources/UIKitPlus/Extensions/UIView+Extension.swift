@@ -167,4 +167,10 @@ public extension UIView {
             isHidden = true
         }
     }
+
+    func snapshot(of rect: CGRect, afterScreenUpdates: Bool = true) -> UIImage {
+        UIGraphicsImageRenderer(bounds: rect).image { _ in
+            drawHierarchy(in: bounds, afterScreenUpdates: afterScreenUpdates)
+        }
+    }
 }
