@@ -31,4 +31,9 @@ public extension UIButton {
             setValue(newValue, forKey: "imageEdgeInsets")
         }
     }
+
+    @available(iOS 14.0, *)
+    func addAction(_ action: @escaping () -> Void, for event: UIControl.Event = .touchUpInside) {
+        addAction(UIAction { _ in action() }, for: event)
+    }
 }
