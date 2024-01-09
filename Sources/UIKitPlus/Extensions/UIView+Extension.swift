@@ -173,4 +173,16 @@ public extension UIView {
             drawHierarchy(in: bounds, afterScreenUpdates: afterScreenUpdates)
         }
     }
+
+    func addSubviews(_ subviews: [UIView]) {
+        subviews.forEach {
+            addSubview($0)
+        }
+    }
+
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach {
+            addSubview($0)
+        }
+    }
 }
