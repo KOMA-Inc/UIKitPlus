@@ -12,3 +12,10 @@ public class OpacityAnimationHandler: AnimationHandler {
         view.setHidden(false, withDuration: duration, delay: delay, completion: completion)
     }
 }
+
+public extension AnimationHandler where Self == OpacityAnimationHandler {
+
+    static var defaultAnimationHandler: Self {
+        OpacityAnimationHandler(duration: 0.5, delay: 0)
+    }
+}

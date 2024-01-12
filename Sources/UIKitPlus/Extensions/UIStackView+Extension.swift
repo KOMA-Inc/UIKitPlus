@@ -38,39 +38,6 @@ public extension UIStackView {
         }
     }
 
-    func animateSubviewsAppearance(
-        startingFrom index: Int,
-        customAnimation: ((_ target: UIView, _ completion: @escaping (Bool) -> Void) -> Void)? = nil,
-        completion: (() -> Void)? = nil
-    ) {
-        guard let subview = view(by: index) else {
-            completion?()
-            return
-        }
-
-        customAnimation?(subview) { _ in
-            self.animateSubviewsAppearance(
-                startingFrom: index + 1,
-                customAnimation: customAnimation,
-                completion: completion
-            )
-        }
-    }
-
-    func addArrangedSubviews(
-        _ subviews: [UIView],
-        startingFrom: Int = 0,
-        completion: (() -> Void)? = nil,
-        customAnimation: ((_ target: UIView, _ completion: @escaping (Bool) -> Void) -> Void)? = nil
-    ) {
-        addArrangedSubviews(subviews)
-        animateSubviewsAppearance(
-            startingFrom: startingFrom,
-            customAnimation: customAnimation,
-            completion: completion
-        )
-    }
-
     func addArrangedSubviewsWithAnimation(
         _ subviews: [UIView],
         preAnimationHandler: AnimationHandler = .defaultPreAnimationHandler,
