@@ -2,14 +2,6 @@ import UIKit
 
 public extension UIStackView {
 
-    func view(by index: Int) -> UIView? {
-        if arrangedSubviews.indices.contains(index) {
-            arrangedSubviews[index]
-        } else {
-            nil
-        }
-    }
-
     func removeLastArrangedSubview() {
         guard let subview = arrangedSubviews.last else { return }
         removeArrangedSubview(subview)
