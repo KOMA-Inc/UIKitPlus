@@ -29,4 +29,46 @@ public extension UIStackView {
             addArrangedSubview(subview)
         }
     }
+
+    func addArrangedSubviewsWithAnimation(
+        _ subviews: [UIView],
+        preAnimationHandler: AnimationHandler = .defaultPreAnimationHandler,
+        animationHandler: AnimationHandler = .defaultAnimationHandler,
+        completion: (() -> Void)? = nil
+    ) {
+        let dispatchGroup = DispatchGroup()
+
+        // Perform pre animation block for all subviews
+        subviews.forEach {
+            dispatchGroup.enter()
+            preAnimationHandler.animate(view: $0) { _ in
+                dispatchGroup.leave()
+            }
+        }
+
+        func animate(
+            _ subviews: [UIView],
+            animationHandler: AnimationHandler,
+            completion: (() -> Void)?
+        ) {
+            guard let first = subviews.first else {
+                completion?()
+                return
+            }
+
+            animationHandler.animate(view: first) { _ in
+                animate(
+                    Array(subviews.dropFirst()),
+                    animationHandler: animationHandler,
+                    completion: completion
+                )
+            }
+        }
+
+        // When completed, add arranged subviews
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.addArrangedSubviews(subviews)
+            animate(subviews, animationHandler: animationHandler, completion: completion)
+        }
+    }
 }
