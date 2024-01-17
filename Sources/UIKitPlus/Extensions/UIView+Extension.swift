@@ -168,12 +168,6 @@ public extension UIView {
         }
     }
 
-    func screenshot(of rect: CGRect, afterScreenUpdates: Bool = true) -> UIImage {
-        UIGraphicsImageRenderer(bounds: rect).image { _ in
-            drawHierarchy(in: bounds, afterScreenUpdates: afterScreenUpdates)
-        }
-    }
-
     func addSubviews(_ subviews: [UIView]) {
         subviews.forEach {
             addSubview($0)
