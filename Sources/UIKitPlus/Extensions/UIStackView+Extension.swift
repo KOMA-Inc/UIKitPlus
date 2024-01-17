@@ -71,4 +71,11 @@ public extension UIStackView {
             animate(subviews, animationHandler: animationHandler, completion: completion)
         }
     }
+
+    /// Applies custom spacing after view that is before specified view in stack view
+    func setCustomSpacing(_ spacing: CGFloat, before view: UIView) {
+        guard let index = arrangedSubviews.firstIndex(of: view), index > 0 else { return }
+        let targetView = arrangedSubviews[index - 1]
+        setCustomSpacing(spacing, after: targetView)
+    }
 }

@@ -179,4 +179,27 @@ public extension UIView {
             addSubview($0)
         }
     }
+
+    @discardableResult
+    func preparedForAutoLayout() -> Self {
+        translatesAutoresizingMaskIntoConstraints = false
+        return self
+    }
+
+    @discardableResult
+    func fixedHeight(_ height: CGFloat) -> Self {
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+        return self
+    }
+
+    @discardableResult
+    func fixedWidth(_ width: CGFloat) -> Self {
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+        return self
+    }
+
+    @discardableResult
+    func fixedSize(_ size: CGSize) -> Self {
+        fixedWidth(size.width).fixedHeight(size.height)
+    }
 }
