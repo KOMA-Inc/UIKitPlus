@@ -10,7 +10,6 @@ public extension UIScrollView {
      - Parameter duration: The duration of the bounce animation. Default is 0.5 seconds.
      - Parameter delay: The delay before starting the bounce animation. Default is zero seconds.
 
-     - SeeAlso: `UIScrollView.BounceAxis`
      */
     func bounce(
         by axis: NSLayoutConstraint.Axis,
@@ -18,12 +17,13 @@ public extension UIScrollView {
         and duration: Double = 0.5,
         after delay: Double = .zero
     ) {
+
         let originalContentOffset = contentOffset
         let newContentOffset = switch axis {
         case .horizontal:
-            CGPoint(x: offset, y: 0)
+            CGPoint(x: originalContentOffset.x + offset, y: originalContentOffset.y)
         case .vertical:
-            CGPoint(x: 0, y: offset)
+            CGPoint(x: originalContentOffset.x, y: originalContentOffset.y + offset)
         @unknown default:
             CGPoint.zero
         }
