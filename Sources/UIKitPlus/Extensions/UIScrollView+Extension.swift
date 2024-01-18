@@ -29,11 +29,11 @@ public extension UIScrollView {
         }
 
         UIView.animateSteps { sequence in
-            sequence.add(duration: duration) {
-                self.contentOffset = newContentOffset
+            sequence.add(duration: duration) { [weak self] in
+                self?.contentOffset = newContentOffset
             }
-            .add(duration: duration) {
-                self.contentOffset = originalContentOffset
+            .add(duration: duration) { [weak self] in
+                self?.contentOffset = originalContentOffset
             }
         }
     }
