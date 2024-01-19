@@ -193,8 +193,20 @@ public extension UIView {
     }
 
     @discardableResult
+    func fixedHeight(_ dimension: NSLayoutDimension, constant: CGFloat = .zero) -> Self {
+        heightAnchor.constraint(equalTo: dimension, constant: constant).isActive = true
+        return self
+    }
+
+    @discardableResult
     func fixedWidth(_ width: CGFloat) -> Self {
         widthAnchor.constraint(equalToConstant: width).isActive = true
+        return self
+    }
+
+    @discardableResult
+    func fixedWidth(_ dimension: NSLayoutDimension, constant: CGFloat = .zero) -> Self {
+        widthAnchor.constraint(equalTo: dimension, constant: constant).isActive = true
         return self
     }
 
