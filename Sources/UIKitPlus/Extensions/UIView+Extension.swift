@@ -214,4 +214,10 @@ public extension UIView {
     func fixedSize(_ size: CGSize) -> Self {
         fixedWidth(size.width).fixedHeight(size.height)
     }
+
+    @discardableResult
+    func fixedAspectRation(_ ratio: Double) -> Self {
+        widthAnchor.constraint(equalTo: heightAnchor, multiplier: ratio).isActive = true
+        return self
+    }
 }
