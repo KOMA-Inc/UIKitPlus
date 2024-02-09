@@ -158,13 +158,15 @@ public extension UIView {
     /// If ViewState is present, performs the `apply` method and sets `isHidden` as true. Otherwise, sets `isHidden` as false
     func applyIfPresent<ViewState>(
         _ viewState: ViewState?,
-        apply: (ViewState) -> Void
+        apply: (ViewState) -> Void,
+        else: (() -> Void)? = nil
     ) {
         if let viewState {
             apply(viewState)
             isHidden = false
         } else {
             isHidden = true
+            `else`?()
         }
     }
 
