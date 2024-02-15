@@ -1,6 +1,12 @@
 import UIKit
 
 public extension UIImage {
+    var megabytesSize: Double {
+        guard let imageData = jpegData(compressionQuality: 1.0) else { return 0.0 }
+        let bytes = Double(imageData.count)
+        return bytes / (1024 * 1024)
+    }
+
     class func image(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         UIGraphicsImageRenderer(size: size).image { rendererContext in
             color.setFill()
