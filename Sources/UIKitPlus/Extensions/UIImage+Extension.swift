@@ -2,7 +2,7 @@ import UIKit
 
 public extension UIImage {
     var megabytesSize: Double {
-        guard let imageData = self.pngData() else { return 0.0 }
+        guard let imageData = jpegData(compressionQuality: 1.0) else { return 0.0 }
         let bytes = Double(imageData.count)
         return bytes / (1024 * 1024)
     }
