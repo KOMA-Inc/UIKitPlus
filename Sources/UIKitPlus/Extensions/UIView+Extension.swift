@@ -222,4 +222,16 @@ public extension UIView {
         widthAnchor.constraint(equalTo: heightAnchor, multiplier: ratio).isActive = true
         return self
     }
+
+    @discardableResult
+    func cornerRadius(_ radius: CGFloat) -> Self {
+        layer.cornerRadius = radius
+        return self
+    }
+
+    @discardableResult
+    func clippedToBounds(_ clipsToBounds: Bool) -> Self {
+        self.clipsToBounds = clipsToBounds
+        return self
+    }
 }
