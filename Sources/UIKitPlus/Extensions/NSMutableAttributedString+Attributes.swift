@@ -75,8 +75,8 @@ public extension NSMutableAttributedString {
         addAttributes([.strikethroughStyle: NSUnderlineStyle.single.rawValue], to: substring)
     }
 
-    var attributedString: NSAttributedString {
-        .init(attributedString: self)
+    var nsAttributedString: NSAttributedString {
+        NSAttributedString(attributedString: self)
     }
 
     @discardableResult
@@ -92,5 +92,13 @@ private extension NSMutableAttributedString {
         guard !string.isEmpty else { return nil }
         let attributes = attributes(at: 0, effectiveRange: nil)
         return attributes[.paragraphStyle] as? NSMutableParagraphStyle
+    }
+}
+
+public extension NSMutableAttributedString {
+
+    @available(iOS 15, *)
+    var attributedString: AttributedString {
+        AttributedString(self)
     }
 }
