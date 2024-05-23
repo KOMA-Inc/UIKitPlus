@@ -56,4 +56,14 @@ public extension UIImage {
             return completion(processedImage)
         }
     }
+
+    
+    /// Returns a compressed data object that contains the image in JPEG format.
+    /// - Parameter toTargetSize: target size in megabytes of the image
+    func jpegDataCompressed(toTargetSize targetSize: Double) -> Data? {
+        let currentSize = megabytesSize
+        let compressQuality = currentSize <= targetSize ? 1 : targetSize / currentSize
+        let imageData = jpegData(compressionQuality: compressQuality)
+        return imageData
+    }
 }
