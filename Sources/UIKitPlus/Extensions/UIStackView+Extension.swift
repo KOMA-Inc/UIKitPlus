@@ -78,4 +78,18 @@ public extension UIStackView {
         let targetView = arrangedSubviews[index - 1]
         setCustomSpacing(spacing, after: targetView)
     }
+
+    /// Adds the view as a subview of the container if it isn't already before the specified view if is present in the stack view
+    func insertArrangedSubview(_ view: UIView, before subview: UIView) {
+        guard arrangedSubviews.firstIndex(of: view) == nil else { return }
+        guard let index = arrangedSubviews.firstIndex(of: subview) else { return }
+        insertArrangedSubview(view, at: index)
+    }
+
+    /// Adds the view as a subview of the container if it isn't already after the specified view if is present in the stack view
+    func insertArrangedSubview(_ view: UIView, after subview: UIView) {
+        guard arrangedSubviews.firstIndex(of: view) == nil else { return }
+        guard let index = arrangedSubviews.firstIndex(of: subview) else { return }
+        insertArrangedSubview(view, at: index + 1)
+    }
 }
