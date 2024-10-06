@@ -234,4 +234,17 @@ public extension UIView {
         self.clipsToBounds = clipsToBounds
         return self
     }
+
+    func pin(to view: UIView, addAsSubview: Bool = true, insets: UIEdgeInsets) {
+
+        translatesAutoresizingMaskIntoConstraints = false
+        if addAsSubview { view.addSubview(self) }
+
+        NSLayoutConstraint.activate {
+            topAnchor.constraint(equalTo: view.topAnchor, constant: insets.top)
+            leftAnchor.constraint(equalTo: view.leftAnchor, constant: insets.left)
+            rightAnchor.constraint(equalTo: view.rightAnchor, constant: -insets.right)
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -insets.bottom)
+        }
+    }
 }
