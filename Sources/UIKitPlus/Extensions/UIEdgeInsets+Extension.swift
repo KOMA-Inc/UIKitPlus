@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIEdgeInsets {
+public extension UIEdgeInsets {
 
     static func make(
         top: CGFloat = .zero,
