@@ -218,6 +218,11 @@ public extension UIView {
     }
 
     @discardableResult
+    func fixedSize(width: CGFloat, height: CGFloat) -> Self {
+        fixedWidth(width).fixedHeight(height)
+    }
+
+    @discardableResult
     func fixedAspectRation(_ ratio: Double) -> Self {
         widthAnchor.constraint(equalTo: heightAnchor, multiplier: ratio).isActive = true
         return self
@@ -235,7 +240,7 @@ public extension UIView {
         return self
     }
 
-    func pin(to view: UIView, addAsSubview: Bool = true, insets: UIEdgeInsets) {
+    func pin(to view: UIView, addAsSubview: Bool = true, insets: UIEdgeInsets = .zero) {
 
         translatesAutoresizingMaskIntoConstraints = false
         if addAsSubview { view.addSubview(self) }
@@ -246,5 +251,35 @@ public extension UIView {
             rightAnchor.constraint(equalTo: view.rightAnchor, constant: -insets.right)
             bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -insets.bottom)
         }
+    }
+
+    @discardableResult
+    func addedAsSubview(to view: UIView) -> Self {
+        view.addSubview(self)
+        return self
+    }
+
+    @discardableResult
+    func pinnedX(to view: UIView, constant: CGFloat = 0) -> Self {
+        centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant).isActive = true
+        return self
+    }
+
+    @discardableResult
+    func pinnedX(to anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> Self {
+        centerXAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
+        return self
+    }
+
+    @discardableResult
+    func pinnedY(to view: UIView, constant: CGFloat = 0) -> Self {
+        centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant).isActive = true
+        return self
+    }
+
+    @discardableResult
+    func pinnedY(to anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> Self {
+        centerYAnchor.constraint(equalTo: anchor, constant: constant).isActive = true
+        return self
     }
 }
