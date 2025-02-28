@@ -229,8 +229,16 @@ public extension UIView {
     }
 
     @discardableResult
-    func cornerRadius(_ radius: CGFloat) -> Self {
+    func cornerRadius(_ radius: CGFloat, curve: CALayerCornerCurve = .continuous) -> Self {
         layer.cornerRadius = radius
+        layer.cornerCurve = curve
+        return self
+    }
+
+    @discardableResult
+    func border(color: UIColor, width: CGFloat) -> Self {
+        layer.borderColor = color.cgColor
+        layer.borderWidth = width
         return self
     }
 
