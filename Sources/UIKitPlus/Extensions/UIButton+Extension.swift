@@ -42,7 +42,23 @@ public extension UIButton {
     }
 
     @available(iOS 14.0, *)
-    func addAction(_ action: @escaping () -> Void, for event: UIControl.Event = .touchUpInside) {
-        addAction(UIAction { _ in action() }, for: event)
+    func addAction(
+        withIdentifier identifier: String? = nil,
+        for event: UIControl.Event = .touchUpInside,
+        _ action: @escaping () -> Void
+    ) {
+        let identifier: UIAction.Identifier? = identifier.map {
+            UIAction.Identifier.init($0)
+        }
+        addAction(UIAction(identifier: identifier) { _ in action() }, for: event)
+    }
+
+    @available(iOS 14.0, *)
+    func removeAction(
+        withIdentifier identifier: String,
+        for event: UIControl.Event = .touchUpInside
+    ) {
+        let identifier = UIAction.Identifier(identifier)
+        removeAction(identifiedBy: identifier, for: event)
     }
 }
