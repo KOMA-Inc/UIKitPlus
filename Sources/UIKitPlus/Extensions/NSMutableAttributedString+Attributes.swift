@@ -85,6 +85,48 @@ public extension NSMutableAttributedString {
         paragraphStyle.alignment = alignment
         return addAttributes([.paragraphStyle: paragraphStyle])
     }
+
+    @discardableResult
+    func setLink(_ link: String, to substring: String) -> Self {
+        addAttributes([.link: link], to: substring)
+        return self
+    }
+
+    @discardableResult
+    func setUnderline(
+        style: NSUnderlineStyle = .single,
+        color: UIColor? = nil
+    ) -> NSMutableAttributedString {
+        var attributes: [NSAttributedString.Key: Any] = [
+            .underlineStyle: style.rawValue
+        ]
+
+        if let color = color {
+            attributes[.underlineColor] = color
+        }
+
+        addAttributes(attributes)
+        return self
+    }
+
+    @discardableResult
+    func setUnderline(
+        to substring: String,
+        style: NSUnderlineStyle = .single,
+        color: UIColor? = nil
+    ) -> NSMutableAttributedString {
+        var attributes: [NSAttributedString.Key: Any] = [
+            .underlineStyle: style.rawValue
+        ]
+
+        if let color = color {
+            attributes[.underlineColor] = color
+        }
+
+        addAttributes(attributes, to: substring)
+        return self
+    }
+
 }
 
 private extension NSMutableAttributedString {
